@@ -1,0 +1,65 @@
+"a"
+
+"b"
+
+<Program>:="a"+ | "b"+ 
+
+<Program>:= <Program>
+
+<Number> = "0" | "1" | "2" | ...... | "9"
+<DecimalNumber> = "0" | (("1" | "2" | ...... | "9") <Number> *)
+
+<Expression> = <DecimalNumber> "+" <DecimalNumber>
+<Expression> = <Expression> "+" <DecimalNumber>
+
+ababbbbba
+
+
+复杂的BNF
+<Number> = "0" | "1" | "2" | ...... | "9"
+<DecimalNumber> = "0" | (("1" | "2" | ...... | "9") <Number> *)
+
+<MultiplicativeExpression> = <DecimalNumber> | 
+    <MultiplicativeExpression> "*" <DecimalNumer>|
+    <MultiplicativeExpression> "/" <DecimalNumer>
+
+<AddtiveExpression> = <MultiplicativeExpression> | 
+    <AdditiveExpression> "+" <MultiplicativeExpression>|
+    <AdditiveExpression "-" <MultiplicativeExpression
+
+
+<LogicalExpression> = <AdditiveExpression> |
+    <LogicalExpression> "||" <AdditiveExpression> |
+    <LogicalExpression> "&&" <AdditiveExpression>
+
+计算机进行词法分析
+
+
+winter老师写的
+<Number> = "0" | "1" | "2" | ..... | "9"
+
+<DecimalNumber> = "0" | (("1" | "2" | ..... | "9") <Number>* )
+
+<PrimaryExpression> = <DecimalNumber> |
+    "(" <LogicalExpression> ")"
+
+<MultiplicativeExpression> = <PrimaryExpression> | 
+    <MultiplicativeExpression> "*" <PrimaryExpression>| 
+    <MultiplicativeExpression> "/" <PrimaryExpression>
+
+<AdditiveExpression> = <MultiplicativeExpression> | 
+    <AdditiveExpression> "+" <MultiplicativeExpression>| 
+    <AdditiveExpression> "-" <MultiplicativeExpression>
+
+<LogicalExpression> = <AdditiveExpression> | 
+    <LogicalExpression> "||" <AdditiveExpression> | 
+    <LogicalExpression> "&&" <AdditiveExpression>
+
+
+
+"a"
+
+上下文相关文法
+
+
+上下文无关文法
