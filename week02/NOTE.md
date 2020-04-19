@@ -3,10 +3,14 @@
 
 ## 本周作业&随堂练习
 ### 本周作业
-
+写一个正则 匹配JavaScript所有Number直接量 ECMA-262P167
+写一个UTF8ENCODE 函数
+写一个正则表达式除了
+在JavaScript标准中
 ### 随堂练习
 - [ ] 产生式BNF练习
 ## 知识点
+银行的处理，超高精度 也是不安全，唯一的出路是转为整数 以分为单位
 1. 理解BNF可以帮助理解JavaScript的语法定义、标准、本质、更底层的东西
 2. 语言更静态好，越适应大规模的开发,比如Java、TypeScript（弱类型）静态类型系统
 3. 强类型、弱类型
@@ -37,4 +41,46 @@
 - https://github.com/AssemblyScript/assemblyscript/blob/master/src/parser.ts
 - [语法格式描述规范BNF和ABNF](https://www.jianshu.com/p/15efcb0c06c8)
 - [拖拽界面-我向你承诺，1 秒钟页面就能渲染出来](https://mp.weixin.qq.com/s/YfifD8XXshS8vAi5pkpDBQ)
+- https://www.fileformat.info/info/unicode/
+- https://unicode.org/reports/tr31/ command+f search "id_start"
+- https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Float64Array
+- https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array
 把产生式（BNF）学会，学任何语言都更加容易，如何去描述一门语言
+Tab
+记号 有效的  token、
+Tab
+4  5
+1   0
+21  0
+1   10
+908 2
+
+WhiteSpace :: <TAB>
+<VT>
+<FF>
+<SP> <NBSP> <ZWNBSP> <USP>
+
+&nbsp用法
+换行时Java和Script不短裤
+Tody I learn Java&nbsp;Script.Tody I learn Java Script.Tody I learn Java Script.Tody I learn Java Script.
+
+BOM
+零宽空格
+Zero width no break space
+Bit order mask
+
+<TAB>
+<VT>
+<FF>
+<SP> 推荐
+<NBSP>
+<ZWNBSP>
+<USP>
+
+bigint
+
+
+Math.abs(1.1+1.3 - 2.4) <= Number.EPSILON; // false ？？？
+操作系统（Linux系统）、数据结构、算法
+
+工程体系竞争
