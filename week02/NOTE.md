@@ -9,6 +9,8 @@
 - [x] 写一个 UTF-8 Encoding 的函数（用UTF-编码方式编码一段字符串，输入是字符串，输出是字符串编码，例如输入是"hello world",输出是"\x68\x65\x6C\x6C\x6F\x20\x77\x6F\x72\x6C\x64"）
 - [x] 写一个正则表达式，匹配所有的字符串直接量，单引号和双引号(和题目1类似，输入是"aaa"或者'aaa'，用正c则匹配出来)
 - [x] 完成一篇本周的学习总结
+
+
 ### 2.2. 随堂练习
 - [x] 编写带括号的四则运算产生式
 - [ ] 尽可能寻找你知道的计算机语言，尝试把它们分类
@@ -74,7 +76,7 @@ Token：记号、标记。JS 里有效的输入元素都可以叫 Token。
     -  `token`是记号 有效的
 - 把产生式（BNF）学会，学任何语言都更加容易，如何去描述一门语言。
 - 有趣的Tab
-```
+```html
 // Tab
 4  5
 1   0
@@ -82,6 +84,7 @@ Token：记号、标记。JS 里有效的输入元素都可以叫 Token。
 1   10
 908 2
 ```
+```html
 <TAB>
 <VT>
 <FF>
@@ -91,12 +94,13 @@ Token：记号、标记。JS 里有效的输入元素都可以叫 Token。
 <USP>
 - WhiteSpace
 ```
+```html
 WhiteSpace :: <TAB>
 <VT>
 <FF>
 <SP> <NBSP> <ZWNBSP> <USP>
 ```
-- &nbsp用法（其实我们都用错了，它不仅仅是空格，而是连接的两个词永远不会隔行）
+-  `&nbsp` 用法（其实我们都用错了，它不仅仅是空格，而是连接的两个词永远不会隔行）
 ```html
 // 换行时Java和Script
 Tody I learn Java&nbsp;Script.Tody I learn Java Script.Tody I learn Java Script.Tody I learn Java Script.
