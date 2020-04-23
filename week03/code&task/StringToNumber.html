@@ -1,0 +1,73 @@
+<!--
+ * @Author: qingcheng
+ * @Date: 2020-04-23 22:12:06
+ * @LastEditors: qingcheng
+ * @LastEditTime: 2020-04-23 22:40:11
+ * @Description: 
+ * @email: 3300536651@qq.com
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // string转number 有三个场景
+        /**
+         *
+         *x 几进制
+         */
+        function convertStringToNumber(string, x) {
+            if (arguments.length < 2) {
+                x = 10; // 默认十进制
+            }
+            var chars = string.split('');
+            var number = 0;
+            var i = 0;
+            // for(var i = 0; i < chars.length; i++) {
+            //     number = number * x;
+            //     number += chars[i].codePointAt(0) - '0'.codePointAt(0);
+            // }
+            while (i < chars.length && chars[i] != '.') {
+                number = number * x;
+                number += chars[i].codePointAt(0) - '0'.codePointAt(0);
+                i++;
+                console.log(number,'number')
+            }
+            if(chars[i] === '.') {
+                i++;
+            }
+            var fraction = 1;
+            while (i < chars.length) {
+                fraction = fraction / x;
+                number += (chars[i].codePointAt(0) - '0'.codePointAt())*fraction;
+                i++;
+            }
+            console.log(number)
+            return number;
+        }
+        // 2进制到10进制 number表示
+        convertStringToNumber('10.02', 10); // 10进制
+        convertStringToNumber('10.321', 10); // 10进制
+        convertStringToNumber('100', 2); // 2进制
+        // 处理了整数部分
+        function convertNumberToString(number, x) {
+            let integer = Math.floor(number);
+            let fraction = number - integer;
+            let string = '';
+            while(integer > 0) {
+                string += String(integer % x) + string;
+                integer = Math.floor(integer /x);
+            }
+            return string;
+        }
+        console.log(convertNumberToString(100),'===》convertNumberToString')
+    </script>
+</body>
+
+</html>

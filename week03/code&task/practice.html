@@ -1,0 +1,109 @@
+<!--
+ * @Author: qingcheng
+ * @Date: 2020-04-23 20:40:13
+ * @LastEditors: qingcheng
+ * @LastEditTime: 2020-04-23 22:07:55
+ * @Description: 
+ * @email: 3300536651@qq.com
+ -->
+<script>
+
+
+function check(zero) {
+    if(1/zero === Infinity) {
+        return 1;
+    }
+    if(1/zero === -Infinity) {
+        return -1;
+    }
+}
+check(0); // 1
+check(-0); // -1
+
+
+function sign(number) {
+    return number/Math.abs(number);
+}
+
+
+function foo(){
+    console.log('This is foo');
+    new.target // 可以判断是否被new
+}
+new foo();
+
+var fakeObject  = {};
+Object.setPrototypeof(fakeObject, foo.prototype);
+fakeObject.constructor = foo;
+foo.apply(fakeObject);
+fakeObject instanceof foo // true
+
+// super.b
+class Parent {
+    constructor() {
+        this.a = 1;
+    }
+}
+class Child extends Parent {
+    constructor(){
+        super();
+        console.log(super.a);
+    }
+}
+//
+var name = 'winter';
+function foo() {
+    console.log(arguments);
+}
+foo`Hello ${name}!`;
+
+var a = 1, b = 1, c = 1;
+aa 
+++
+bb 
+++
+c
+
+function foo1() {
+    console.log(1);
+    return false;
+}
+function foo2() {
+    console.log(2);
+}
+foo1() && foo2() // 1
+foo1() || foo2() // 1 2
+true ? foo1() : foo2() // 1 false
+false ? foo1():foo2() // 2
+
+8*'ab'
+// NaN
+new String('hello')
+// String {"hello"}0: "h"1: "e"2: "l"3: "l"4: "o"length: 5__proto__: Stringanchor: ƒ anchor()big: ƒ big()blink: ƒ blink()bold: ƒ bold()charAt: ƒ charAt()charCodeAt: ƒ charCodeAt()codePointAt: ƒ codePointAt()concat: ƒ concat()constructor: ƒ String()endsWith: ƒ endsWith()fixed: ƒ fixed()fontcolor: ƒ fontcolor()fontsize: ƒ fontsize()includes: ƒ includes()indexOf: ƒ indexOf()italics: ƒ italics()lastIndexOf: ƒ lastIndexOf()length: 0link: ƒ link()localeCompare: ƒ localeCompare()match: ƒ match()matchAll: ƒ matchAll()normalize: ƒ normalize()padEnd: ƒ padEnd()padStart: ƒ padStart()repeat: ƒ repeat()replace: ƒ replace()search: ƒ search()slice: ƒ slice()small: ƒ small()split: ƒ split()startsWith: ƒ startsWith()strike: ƒ strike()sub: ƒ sub()substr: ƒ substr()substring: ƒ substring()sup: ƒ sup()toLocaleLowerCase: ƒ toLocaleLowerCase()toLocaleUpperCase: ƒ toLocaleUpperCase()toLowerCase: ƒ toLowerCase()toString: ƒ toString()toUpperCase: ƒ toUpperCase()trim: ƒ trim()trimEnd: ƒ trimEnd()trimLeft: ƒ trimStart()trimRight: ƒ trimEnd()trimStart: ƒ trimStart()valueOf: ƒ valueOf()Symbol(Symbol.iterator): ƒ [Symbol.iterator]()__proto__: Object[[PrimitiveValue]]: ""[[PrimitiveValue]]: "hello"
+typeof String
+// "function"
+typeof String
+// "function"
+typeof new String('asdf')
+// "object"
+typeof 'asd'
+// "string"
+typeof String('adsf')
+// "string"
+Object(Symbol('1')) instanceof Symbol
+// true
+Object(Symbol('1')) instanceof Boolean
+// false
+(function(){return this}).apply(Symbol('x'))
+1+{}
+// "1[object Object]"
+1+{valueOf(){return 2}}
+// 3
+1 + {valueOf(){return 1},toString(){return 3}}
+// 2
+1 + {toPrimitive(){return 1},toString(){return 3},toValue(){return 10}}
+// 4
+1 + {toValue(){return 10},toString(){return 3},toPrimitive(){return 1}}
+1 + {toValue(){return 10},toPrimitive(){return 1}}
+// "1[object Object]"
+</script>
