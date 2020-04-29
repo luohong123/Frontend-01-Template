@@ -2,7 +2,7 @@
  * @Author: qingcheng
  * @Date: 2020-04-23 22:12:06
  * @LastEditors: qingcheng
- * @LastEditTime: 2020-04-29 23:16:12
+ * @LastEditTime: 2020-04-29 23:37:39
  * @Description: 
  * @email: 3300536651@qq.com
  -->
@@ -16,6 +16,16 @@
 </head>
 
 <body>
+    <div>
+        <p>convertStringToNumber</p>
+        <input type="text" id="convertStringToNumber" onkeydown="convertStringToNumberTest()" value="">
+        <div id="convertStringToNumberOutput"></div>
+    </div>
+    <div>
+        <p>convertNumberToString</p>
+        <input type="text" id="convertNumberToString" onkeydown="convertNumberToStringTest()" value="">
+        <div id="convertNumberToStringOutput"></div>
+    </div>
     <script>
         // string转number 有三个场景
         /**
@@ -67,6 +77,13 @@
             return string;
         }
         convertNumberToString(100);
+        function convertStringToNumberTest() {
+            let input = document.getElementById('convertStringToNumber');
+            convertStringToNumber(input);
+        }
+        function convertNumberToStringTest() {
+            let input = document.getElementById('convertNumberToString');
+        }
     </script>
 </body>
 
