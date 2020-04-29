@@ -106,4 +106,12 @@ Object(Symbol('1')) instanceof Boolean
 1 + {toValue(){return 10},toString(){return 3},toPrimitive(){return 1}}
 1 + {toValue(){return 10},toPrimitive(){return 1}}
 // "1[object Object]"
+// 推荐
+for(var i = 0; i < 10; i ++) {
+var button = document.createElement('button');
+    document.body.appendChild(button);
+void function(){
+    console.log(i)
+}(i)
+}
 </script>

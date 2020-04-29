@@ -2,7 +2,7 @@
  * @Author: qingcheng
  * @Date: 2020-04-23 22:12:06
  * @LastEditors: qingcheng
- * @LastEditTime: 2020-04-23 22:40:11
+ * @LastEditTime: 2020-04-29 23:16:12
  * @Description: 
  * @email: 3300536651@qq.com
  -->
@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>StringToNumber&&NumberToString</title>
 </head>
 
 <body>
@@ -37,7 +37,6 @@
                 number = number * x;
                 number += chars[i].codePointAt(0) - '0'.codePointAt(0);
                 i++;
-                console.log(number,'number')
             }
             if(chars[i] === '.') {
                 i++;
@@ -48,7 +47,7 @@
                 number += (chars[i].codePointAt(0) - '0'.codePointAt())*fraction;
                 i++;
             }
-            console.log(number)
+            console.log(`input:${string} ==> output:${number}`,`【convertStringToNumber-${x}进制】`)
             return number;
         }
         // 2进制到10进制 number表示
@@ -64,9 +63,10 @@
                 string += String(integer % x) + string;
                 integer = Math.floor(integer /x);
             }
+            console.log(`input:${number}, output:${string}`,'convertNumberToString')
             return string;
         }
-        console.log(convertNumberToString(100),'===》convertNumberToString')
+        convertNumberToString(100);
     </script>
 </body>
 

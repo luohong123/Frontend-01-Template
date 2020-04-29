@@ -1,10 +1,18 @@
 # 每周总结可以写在这里
 ## 2. 本周作业&随堂练习
 ### 2.1. 本周作业
-- [x] String to Number
-- [x] Number to String
-- [ ] 找出js标准中所有对象的总结 -文字型的作业
+- [x] String to Number,根据这节课上讲师已写好的部分，补充写完函数 convertStringToNumber
+- [x] Number to String,写出函数 convertNumberToString
+- [x] JavaScript | 语句，对象
+- [StringToNumber&&NumberToString](./code&task/StringToNumber&&NumberToString.html)
+- [分析有哪些对象是我们无法实现出来的，这些对象都有哪些特性？](./code&task/JavaScript标准对象分析.md)
+根据课上老师的示范，找出 JavaScript 标准里所有的对象，分析有哪些对象是我们无法实现出来的，这些对象都有哪些特性？写一篇文章，放在学习总结里。
 ### 2.2. 随堂练习
+## 回放视频时间段
+- 开始讲面向对象(01时58分-02时58分)
+- 布置找出对象标准作业(02时58分)
+
+
 ## 课堂笔记
 - [真正了解js中的number](http://jsfiddle.net/pLh8qeor/19/)
 - http://www.softelectro.ru/ieee754_en.html
@@ -20,24 +28,8 @@
 ```
 浮点数尽量少用算术计算，如果进行计算要考虑精度问题
 
-```js
-// 推荐
-for(var i = 0; i < 10; i ++) {
-var button = document.createElement('button');
-    document.body.appendChild(button);
-
-void function(){
-    console.log(i)
-}(i)
-}
-
 
 ```
-
-```js
-
-```
-
 Statement : 
 EmptyStatement
 ExpressionStatement
@@ -46,7 +38,7 @@ BreakStatement
 ReturnStatement 
 ThrowStatement 
 DebuggerStatement
-
+```
 声明
 
 Object
@@ -61,7 +53,7 @@ Object
 
 而采用分类思想的计算机语言，则是单继承结构。并且会有一个基类Object
 
-mixins
+Mixins
 
 Object-Prototype
 原型是一种更接近人类原始认知的描述对象的方法。
