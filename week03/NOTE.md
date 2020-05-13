@@ -11,7 +11,10 @@
 - 开始讲面向对象(01时58分-02时58分)
 - 布置找出对象标准作业(02时58分)
 
-
+### 2.3. 优秀作业
+- [stringToNumber](https://github.com/xiaodaobiepao/Frontend-01-Template/blob/master/week03/homework.md）
+- [无法实现的对象](https://github.com/YHXang/Frontend-01-Template/blob/master/week03/SpecialObject.md)
+- https://github.com/Ele-Peng/Frontend-01-Template/blob/master/week03/convertStringToNumber.html
 ## 课堂笔记
 - [真正了解js中的number](http://jsfiddle.net/pLh8qeor/19/)
 - http://www.softelectro.ru/ieee754_en.html
@@ -27,6 +30,7 @@
 ```
 浮点数尽量少用算术计算，如果进行计算要考虑精度问题
 
+- 如果想处理超精度的有理数，最好的方法是用数组去存，每个数组规定是一个十进制位
 
 ```
 Statement : 
