@@ -2,7 +2,7 @@
  * @Author: qingcheng
  * @Date: 2020-05-09 20:47:44
  * @LastEditors: qingcheng
- * @LastEditTime: 2020-05-13 23:06:43
+ * @LastEditTime: 2020-05-13 23:34:43
  * @Description: 
  * @email: 3300536651@qq.com
  */
@@ -56,8 +56,11 @@ ${this.bodyText}`
             connection.on('data', (data) => {
                 parser.receive(data.toString()); // 
                 // resolve(data.toString());
-                console.log(parser.statusLine, 'statusLine');
-                console.log(parser.headers, 'headers');
+                if(parser.isFinished) {
+                    resolve(parser.response);
+                }
+                // console.log(parser.statusLine, 'statusLine');
+                // console.log(parser.headers, 'headers');
                 // output header的解析
                 // {
                 //     'Content-Type:': 'text/plain',
@@ -103,6 +106,18 @@ class ResponseParser {
         this.headerValue = '';
         this.bodyParser = null;
     }
+    get isFinished() {
+        return this.bodyParser && this.bodyParser.isFinished;
+    }
+    get response() {
+        this.statusLine.match(/HTTP\/1.1 ([0-9]+) ([\s\S]+)/);
+        return {
+            statusCode: RegExp.$1,
+            statusText: RegExp.$2,
+            headers:this.headers,
+            body: this.bodyParser.conetent.join('')
+        }
+    }
     receive(string) {
         for (let i = 0; i < string.length; i++) {
             this.receiveChar(string.charAt(i));
@@ -110,9 +125,7 @@ class ResponseParser {
     }
     // 一个状态机基本的用法
     receiveChar(char) {
-        // console.log(char,'char');
         if (this.current === this.WAITNG_STATUS_LINE) {
-            // console.log(char.charCodeAt(0));
             if (char === '\r') {
                 this.current = this.WAITING_STATUS_LINE_END;
             }
@@ -126,7 +139,6 @@ class ResponseParser {
                 this.current = this.WAITING_HEADER_NAME;
             }
         } else if (this.current === this.WAITING_HEADER_NAME) {
-            // console.log(char);
             if (char === ':') {
                 this.current = this.WAITING_HEADER_SPACE;
             } else if (char === '\r') {
@@ -181,16 +193,14 @@ class TrunkedBodyParser {
         this.isFinished = false;
         this.current = this.WAITING_LENGTH;
     }
+   
     // receive(string) {
 
     // }
     receiveChar(char) {
-        console.log(JSON.stringify(char));
         if (this.current === this.WAITING_LENGTH) {
             if (char === '\r') {
                 if (this.length === 0) {
-                    console.log(this.conetent,'content');
-                    console.log('////////////');
                     this.isFinished = true;
                 }
                 this.current = this.WAITING_LENGTH_LINE_END;
@@ -198,46 +208,28 @@ class TrunkedBodyParser {
                 this.length *= 10;
                 this.length += char.charCodeAt(0) - '0'.charCodeAt(0);
             }
-        }
-        if (this.current === this.WAITING_LENGTH_LINE_END) {
-            console.log('WAITING_LENGTH_LINE_END');
+        } else if (this.current === this.WAITING_LENGTH_LINE_END) {
             if (char === '\n') {
                 this.current = this.READING_TRUNK;
             }
-        }
-        if (this.current === this.READING_TRUNK) {
+        } else if (this.current === this.READING_TRUNK) {
             this.conetent.push(char);
-            this.length --;
+            this.length--;
             if (this.length === 0) {
                 this.current = this.WAITING_NEW_LINE;
             }
-        }
-        if (this.current === this.WAITING_NEW_LINE) {
+        } else if (this.current === this.WAITING_NEW_LINE) {
             if (char === '\r') {
                 this.current = this.WAITING_NEW_LINE_END;
             }
-        }
-        if (this.current === this.WAITING_NEW_LINE_END) {
+        } else if (this.current === this.WAITING_NEW_LINE_END) {
             if (char === '\n') {
                 this.current = this.WAITING_LENGTH; // 每一个循环以空行添加
             }
         }
-        // "2"
-        // "\r"
-        // "\n"
-        // "o"
-        // "k"
-        // "\r"
-        // "\n"
-        // "0"
-        // "\r"
-        // "\n"
-        // "\r"
-        // "\n"
     }
+
 }
-
-
 void async function () {
     let request = new Request({
         method: 'POST',
@@ -254,16 +246,18 @@ void async function () {
     let response = await request.send();
     console.log(response);
     // 输出
-    // HTTP/1.1 200 OK
-    // Content-Type: text/plain
-    // X-Foo: bar
-    // Date: Wed, 13 May 2020 12:29:38 GMT
-    // Connection: keep-alive
-    // Transfer-Encoding: chunked
-
-    // 2
-    // ok
-    // 0
+    // {
+    //     statusCode: '200',
+    //     statusText: 'OK\r',
+    //     headers: {
+    //       'Content-Type': 'text/plain',
+    //       'X-Foo': 'bar',
+    //       Date: 'Wed, 13 May 2020 15:34:04 GMT',
+    //       Connection: 'keep-alive',
+    //       'Transfer-Encoding': 'chunked'
+    //     },
+    //     body: 'ok\r\n'
+    //   }
 }();
 
 /*
