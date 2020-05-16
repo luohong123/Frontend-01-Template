@@ -2,7 +2,7 @@
  * @Author: qingcheng
  * @Date: 2020-05-09 20:47:44
  * @LastEditors: qingcheng
- * @LastEditTime: 2020-05-13 23:34:43
+ * @LastEditTime: 2020-05-14 21:03:49
  * @Description: 
  * @email: 3300536651@qq.com
  */
@@ -205,8 +205,10 @@ class TrunkedBodyParser {
                 }
                 this.current = this.WAITING_LENGTH_LINE_END;
             } else {
-                this.length *= 10;
-                this.length += char.charCodeAt(0) - '0'.charCodeAt(0);
+                this.length*=16;
+                this.length+=parseInt(char,16);
+                // this.length *= 10; bug代码 应该改为16进制
+                // this.length += char.charCodeAt(0) - '0'.charCodeAt(0);
             }
         } else if (this.current === this.WAITING_LENGTH_LINE_END) {
             if (char === '\n') {

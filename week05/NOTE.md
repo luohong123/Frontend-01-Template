@@ -28,6 +28,8 @@ winter的解释是Real就是
 
 - request 是由三部分组成，有 request line、headers、body
 ## 课堂笔记
+- 状态从哪里来？
+    从下面的代码设计出来的格式
 ```html
 HTTP/1.1
 Content-Type: text/html
