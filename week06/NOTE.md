@@ -1,9 +1,11 @@
 # 每周总结可以写在这里
 
 ## 作业
-- 使用状态机完成'abababx'的处理
-- （可选）我们如何用状态机处理完全未知的pattern？
-
+- [x] 使用状态机完成'abababx'的处理
+- [x] 挑战题：我们如何用状态机处理完全未知的 pattern（选做）
+- [x] 跟上课堂内容，完成 DOM 树构建
+- [x] 实现复合选择器，实现支持空格的 Class 选择器（选做）
+- [x] 本周学习总结
 ## 相关网址
 - KPM算法
 - https://www.npmjs.com/package/css 
@@ -51,3 +53,8 @@ match('I am groot');
 - 第二步 创建状态机
 
     - [HTML词法 web标准](https://html.spec.whatwg.org/multipage/parsing.html#data-state)
+
+### CSS-COMPUTING
+- 回流的翻译是很奇怪的，重绘和重排的翻译是比较好的，重排一定重绘，重绘不一定重排，重新计算css一定引起重排
+
+### 有限状态机finite-state-machine
