@@ -1,12 +1,11 @@
 /*
  * @Author: qingcheng
- * @Date: 2020-05-19 23:22:56
+ * @Date: 2020-05-19 23:25:50
  * @LastEditors: qingcheng
- * @LastEditTime: 2020-05-20 23:09:59
+ * @LastEditTime: 2020-05-20 23:10:38
  * @Description: 
  * @email: 3300536651@qq.com
  */
-
 function match(string) {
     // 当前状态
     let state = start;
@@ -31,43 +30,46 @@ function end(c) {
 
 function foundA(c) {
     if (c === "b")
-        return foundB;
-    else
-        return start;
-}
-
-function foundB(c) {
-    if (c === "c")
-        return end;
-    else
-        return start;
-}
-
-function foundC(c) {
-    if (c === "a")
         return foundA2;
     else
-        return start(c);
+        return start;
 }
 
 function foundA2(c) {
-    if (c === "b")
+    if (c === "a")
         return foundB2;
     else
         return start;
 }
 
 function foundB2(c) {
-    if (c === "x")
-        return end;
-    else if (c === "c")
-        return foundC;
+    if (c === "b")
+        return foundA3;
+    else
+        return start(c);
+}
+
+function foundA3(c) {
+    if (c === "a")
+        return foundB3;
     else
         return start;
 }
 
-console.log(match("abcabcabx"));
-console.log(match("abcabc"));
-console.log(match("abc"));
-// start(c) 
-// 状态机代理成原来的状态
+function foundB3(c) {
+    if (c === "b")
+        return foundX;
+    else
+        return start;
+}
+
+function foundX(c) {
+    if (c === "x")
+        return end;
+    else
+        return start;
+}
+
+// test 
+console.log(match('abababx')); // true
+console.log(match('a1bababx')); // false

@@ -2,7 +2,7 @@
  * @Author: qingcheng
  * @Date: 2020-05-16 19:24:38
  * @LastEditors: qingcheng
- * @LastEditTime: 2020-05-20 22:42:20
+ * @LastEditTime: 2020-05-20 22:47:51
  * @Description: 
  * @email: 3300536651@qq.com
  */
@@ -214,14 +214,12 @@ function beforeAttributeName(c) {
         return beforeAttributeName;
     } else if (c == "/" || c == ">" || c == EOF) {
         return afterAttributeName(c);
-    } else if (c == "=") {
-
-    } else {
+    } else if (c == "=") {} else {
         currentAttribute = {
             name: "",
             value: ""
         }
-        return beforeAttributeName(c);
+        return attributeName(c);
     }
 }
 
