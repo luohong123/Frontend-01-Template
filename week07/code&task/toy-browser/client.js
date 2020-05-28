@@ -1,14 +1,17 @@
 /*
  * @Author: qingcheng
  * @Date: 2020-05-18 12:24:30
- * @LastEditors: qingcheng
- * @LastEditTime: 2020-05-18 12:24:31
+ * @LastEditors: lh
+ * @LastEditTime: 2020-05-28 15:06:51
  * @Description: 
  * @email: 3300536651@qq.com
- */ 
+ */
 
 const net = require('net');
 const parser = require('./parser.js');
+const render = require('./render');
+// https://github.com/zhangyuanwei/node-images
+const images = require('images');
 class Request {
     constructor(options) {
         this.method = options.method || 'GET';
@@ -47,26 +50,11 @@ ${this.bodyText}`
                     connection.write(this.toString());
                 });
             };
-            // 看到77分钟
-            // 这个data是什么时候触发，比如服务端收到一个包，TCP 认为是一个流
-            // data是一个流，一部分一部分的灌给parser
-            // Nodejs buffer
             connection.on('data', (data) => {
                 parser.receive(data.toString()); // 
-                // resolve(data.toString());
-                if(parser.isFinished) {
+                if (parser.isFinished) {
                     resolve(parser.response);
                 }
-                // console.log(parser.statusLine, 'statusLine');
-                // console.log(parser.headers, 'headers');
-                // output header的解析
-                // {
-                //     'Content-Type:': 'text/plain',
-                //     'X-Foo:': 'bar',
-                //     'Date:': 'Wed, 13 May 2020 14:31:51 GMT',
-                //     'Connection:': 'keep-alive',
-                //     'Transfer-Encoding:': 'chunked'
-                //   }
                 connection.end();
             });
             connection.on('error', (err) => {
@@ -112,7 +100,7 @@ class ResponseParser {
         return {
             statusCode: RegExp.$1,
             statusText: RegExp.$2,
-            headers:this.headers,
+            headers: this.headers,
             body: this.bodyParser.conetent.join('')
         }
     }
@@ -141,7 +129,6 @@ class ResponseParser {
                 this.current = this.WAITING_HEADER_SPACE;
             } else if (char === '\r') {
                 this.current = this.WAITING_HEADER_BLOCK_END = 6;;
-                // 在这个点开始才知道header是用什么encoding的
                 if (this.headers['Transfer-Encoding'] === 'chunked')
                     this.bodyParser = new TrunkedBodyParser();
             } else {
@@ -191,7 +178,7 @@ class TrunkedBodyParser {
         this.isFinished = false;
         this.current = this.WAITING_LENGTH;
     }
-   
+
     // receive(string) {
 
     // }
@@ -203,8 +190,8 @@ class TrunkedBodyParser {
                 }
                 this.current = this.WAITING_LENGTH_LINE_END;
             } else {
-                this.length*=16;
-                this.length+=parseInt(char,16);
+                this.length *= 16;
+                this.length += parseInt(char, 16);
                 // this.length *= 10; bug代码 应该改为16进制
                 // this.length += char.charCodeAt(0) - '0'.charCodeAt(0);
             }
@@ -245,5 +232,8 @@ void async function () {
     });
     let response = await request.send();
     let dom = parser.parseHTML(response.body);
+    let viewport = images(800, 600);
+    render(viewport, dom.children[0].children[3].children[1].children[1]);
+    viewport.save('viewport.jpg');
     console.log(dom);
 }();
