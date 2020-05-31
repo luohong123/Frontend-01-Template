@@ -1,21 +1,12 @@
-/*
- * @Author: qingcheng
- * @Date: 2020-05-18 12:50:29
+<!--
+ * @Author: lh
+ * @Date: 2020-05-31 22:40:45
  * @LastEditors: lh
- * @LastEditTime: 2020-05-31 22:39:32
+ * @LastEditTime: 2020-05-31 22:40:45
  * @Description: 
  * @email: 3300536651@qq.com
- */ 
-const http = require('http');
-const server = http.createServer((req, res) => {
-    console.log('request recieved');
-    res.setHeader('Content-Type', 'text/html');
-    res.setHeader('X-Foo', 'bar');
-    res.writeHead(200, {
-        'Content-Type': 'text/html'
-    });
-    res.end(
-`
+--> 
+
 <html lang="en">
 <meta charset="UTF-8" />
 <head>
@@ -54,7 +45,3 @@ const server = http.createServer((req, res) => {
    </div>
 </body>
 </html>
-`);
-});
-server.listen(8088);
-console.log('server started localhost://')

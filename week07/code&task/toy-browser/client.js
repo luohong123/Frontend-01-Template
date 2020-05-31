@@ -2,7 +2,7 @@
  * @Author: qingcheng
  * @Date: 2020-05-18 12:24:30
  * @LastEditors: lh
- * @LastEditTime: 2020-05-28 15:06:51
+ * @LastEditTime: 2020-05-31 22:11:09
  * @Description: 
  * @email: 3300536651@qq.com
  */
@@ -227,13 +227,14 @@ void async function () {
             ['X-Foo2']: 'customed'
         },
         body: {
-            name: 'winter'
+            name: 'qingcheng'
         }
     });
     let response = await request.send();
     let dom = parser.parseHTML(response.body);
     let viewport = images(800, 600);
-    render(viewport, dom.children[0].children[3].children[1].children[1]);
+    console.log(JSON.stringify(dom,null,"      ",'dom'));
+    // render(viewport, dom.children[0].children[3].children[1].children[1]);
+    render(viewport, dom);
     viewport.save('viewport.jpg');
-    console.log(dom);
 }();

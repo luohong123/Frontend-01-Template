@@ -2,7 +2,7 @@
  * @Author: lh
  * @Date: 2020-05-27 23:24:20
  * @LastEditors: lh
- * @LastEditTime: 2020-05-28 14:16:12
+ * @LastEditTime: 2020-05-31 17:28:11
  * @Description: 
  * @email: 3300536651@qq.com
  */
@@ -10,7 +10,7 @@ const images = require('images');
 // https://www.npmjs.com/package/images
 function render(viewport, element) {
     if (element.style) {
-        var img = images(element.style.width, elment.style.height);
+        var img = images(element.style.width, element.style.height);
         if (element.style['background-color']) {
             let color = element.style['background-color'] || "rgb(0,0,0)";
             color.match(/rgb\((\d+),(\d+),(\d+)\)/);
@@ -19,7 +19,7 @@ function render(viewport, element) {
         }
     }
     if (element.children) {
-        for (let child of elment.children) {
+        for (let child of element.children) {
             render(viewport, child);
         }
     }

@@ -13,7 +13,7 @@
             "skipFiles":[
                 "<node_internals>/**"
             ],
-            "program":"${workspaceFolder}/week06/code&task/finite-state-machine/match-abababx/match.js"
+            "program":"${workspaceFolder}/week07/code&task/toy-browser/client.js"
         }
     ]
 }

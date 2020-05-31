@@ -2,7 +2,7 @@
  * @Author: lh
  * @Date: 2020-05-27 21:33:23
  * @LastEditors: lh
- * @LastEditTime: 2020-05-27 23:23:41
+ * @LastEditTime: 2020-05-31 22:40:19
  * @Description: 
  * @email: 3300536651@qq.com
  */
@@ -229,6 +229,7 @@ function layout(element) {
                     var step = mainSpace / (items.length - 1) * mainSign;
                     var currentMain = mainBase;
                 }
+                // 
                 if (style.justifyContent === 'space-around') {
                     var step = mainSpace / items.length * mainSign;
                     var currentMain = step / 2 + mainBase;

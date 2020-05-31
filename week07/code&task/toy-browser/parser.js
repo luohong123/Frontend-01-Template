@@ -2,7 +2,7 @@
  * @Author: qingcheng
  * @Date: 2020-05-16 19:24:38
  * @LastEditors: lh
- * @LastEditTime: 2020-05-28 14:03:09
+ * @LastEditTime: 2020-05-31 19:10:16
  * @Description: 
  * @email: 3300536651@qq.com
  */
@@ -29,7 +29,7 @@ function match(element, selector) {
     if (!selector || !element.attributes) {
         return false;
     }
-    if (selector.chartAt(0) == "#") {
+    if (selector.charAt(0) == "#") {
         let attr = element.attributes.filter(attr => attr.name === "id")[0];
         if (attr && attr.value === selector.replace("#", '')) {
             return true;
@@ -46,7 +46,10 @@ function match(element, selector) {
     }
     return false;
 }
-
+/**
+ * 特征
+ * @param {*} selector 
+ */
 function specificity(selector) {
     let p = [0, 0, 0, 0];
     let selectorParts = selector.split(" ");
@@ -74,7 +77,10 @@ function compare(sp1, sp2) {
     }
     return sp1[3] - sp2[3];
 }
-
+/**
+ * 计算css
+ * @param {*} element 
+ */
 function computeCSS(element) {
     let elements = stack.slice().reverse();
     if (!element.computedStyle) {
@@ -142,6 +148,7 @@ function emit(token) {
             if (top.tagName === 'style') {
                 addCSSRules(top.children[0].content);
             }
+            layout(top);
             stack.pop();
         }
         currentTextNode = null;
