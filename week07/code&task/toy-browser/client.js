@@ -2,7 +2,7 @@
  * @Author: qingcheng
  * @Date: 2020-05-18 12:24:30
  * @LastEditors: lh
- * @LastEditTime: 2020-05-31 22:11:09
+ * @LastEditTime: 2020-06-02 14:03:27
  * @Description: 
  * @email: 3300536651@qq.com
  */
@@ -33,13 +33,13 @@ class Request {
     // 注意：字符串不能有缩进
     toString() {
         return `${this.method} ${this.path} HTTP/1.1\r
-${Object.keys(this.headers).map(key => `${key}: ${this.headers[key]}`).join('\r\n')}
+${Object.keys(this.headers).map(key => `${key}: ${this.headers[key]}`).join('\r\n')}\r
 \r
 ${this.bodyText}`
     };
     send(connection) {
-        const parser = new ResponseParser;
         return new Promise((resolve, reject) => {
+            const parser = new ResponseParser;
             if (connection) {
                 connection.write(this.toString());
             } else {
@@ -114,12 +114,14 @@ class ResponseParser {
         if (this.current === this.WAITNG_STATUS_LINE) {
             if (char === '\r') {
                 this.current = this.WAITING_STATUS_LINE_END;
-            }
-            if (char === '\n') {
-                this.current = this.WAITING_HEADER_NAME;
             } else {
                 this.statusLine += char;
-            } // 113min
+            }
+            // if (char === '\n') {
+            //     this.current = this.WAITING_HEADER_NAME;
+            // } else {
+            //     this.statusLine += char;
+            // } // 113min
         } else if (this.current === this.WAITING_STATUS_LINE_END) {
             if (char === '\n') {
                 this.current = this.WAITING_HEADER_NAME;
@@ -192,8 +194,6 @@ class TrunkedBodyParser {
             } else {
                 this.length *= 16;
                 this.length += parseInt(char, 16);
-                // this.length *= 10; bug代码 应该改为16进制
-                // this.length += char.charCodeAt(0) - '0'.charCodeAt(0);
             }
         } else if (this.current === this.WAITING_LENGTH_LINE_END) {
             if (char === '\n') {
@@ -231,10 +231,13 @@ void async function () {
         }
     });
     let response = await request.send();
+    // console.log(response.body, '===>response.body');
     let dom = parser.parseHTML(response.body);
     let viewport = images(800, 600);
-    console.log(JSON.stringify(dom,null,"      ",'dom'));
-    // render(viewport, dom.children[0].children[3].children[1].children[1]);
-    render(viewport, dom);
-    viewport.save('viewport.jpg');
+    // render(viewport, dom.children[0].children[3].children[1].children[1]); // 渲染红色div
+    // render(viewport, dom.children[0].children[3].children[1].children[3]); // 渲染单个元素（绿色div）
+    console.log('dom parser start===>');
+    console.log(JSON.stringify(dom, null, '    '),'===>dom');
+    render(viewport,dom);
+    viewport.save('./viewport.jpg');
 }();
