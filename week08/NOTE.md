@@ -1,6 +1,13 @@
 # 每周总结可以写在这里
 ## 本周作业
-
+编写一个 match 函数，完善你的 toy-browser
+复制代码
+```js
+function match(selector, element) {
+    return true;
+}
+match("div #id.class", document.getElementById("id"));
+```
 
 ### 练习
 - div#a.b .c[id=x]

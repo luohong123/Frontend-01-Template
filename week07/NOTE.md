@@ -12,6 +12,7 @@ Error: imagesdoes not yet support your current environment: OS X 64-bit with Uns
 ```
 解决方法：使用node 10版本，可以通过`nvm use 10`切换版本，重新下载`images`插件，重新启动代码。
 2. 红色的div无法渲染出来
+
 <img src="./code&task/toy-browser/viewport.jpg" width="800" />
 刚刚开始红色的div一直渲染不出来，最后才发现在写rgb值时加了空格，在读取的时候也没有做任何空格处理的操作。background-color:rgb(255,0,0);写成了 background-color:rgb(255, 0, 0); 这是我平时的书写习惯问题造成了我踩坑。
 
