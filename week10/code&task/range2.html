@@ -1,0 +1,29 @@
+<!--
+ * @Author: lh
+ * @Date: 2020-06-11 20:32:22
+ * @LastEditors: lh
+ * @LastEditTime: 2020-06-11 20:40:46
+ * @Description: 
+ * @email: 3300536651@qq.com
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="a">123<span style="background-color: yellow;">456789</span>0123456789</div>
+    <script>
+        let range = new Range();
+        range.setStart(document.getElementById('a').childNodes[0], 3);
+        range.setEnd(document.getElementById('a').childNodes[2], 3);
+        // range.extractContents(); // 1233456789
+    </script>
+</body>
+
+</html>

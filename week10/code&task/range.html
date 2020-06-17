@@ -1,0 +1,35 @@
+<!--
+ * @Author: lh
+ * @Date: 2020-06-11 20:27:29
+ * @LastEditors: lh
+ * @LastEditTime: 2020-06-11 20:31:15
+ * @Description: 
+ * @email: 3300536651@qq.com
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="a">
+        123456789
+    </div>
+    <script>
+        // 通过range 操作dom树上的小细节， 
+        let element = document.getElementById('a').childNodes[0];
+        let range = new Range();
+        range.setStart(element, 3);
+        range.setEnd(element, 6);
+        // range.extractContents(); // 456没有了
+
+
+        
+    </script>
+</body>
+
+</html>

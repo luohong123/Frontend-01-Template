@@ -1,0 +1,283 @@
+<!--
+ * @Author: lh
+ * @Date: 2020-06-13 19:14:14
+ * @LastEditors: lh
+ * @LastEditTime: 2020-06-17 22:14:01
+ * @Description: 
+ * @email: 3300536651@qq.com
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>棋盘-井字棋</title>
+    <style>
+        #box {
+            width: 300px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #box div {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            box-sizing: border-box;
+            border: solid 1px #fff;
+            background-color: green;
+            text-align: center;
+            font-size: 50px;
+        }
+
+        #wrapper {
+            width: 300px;
+        }
+
+        #wrapper .toolbar {
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        #wrapper .toolbar button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="box"> </div>
+        <div class="toolbar">
+            <button type="button" id="reset">重新开始</button>
+        </div>
+    </div>
+
+    <script>
+        // 二维数组
+        let pattern = [
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0]
+        ];
+        // let pattern = [
+        //     [1, 2, 0],
+        //     [0, 1, 0],
+        //     [0, 0, 0]
+        // ];
+        // let pattern = [
+        //     [1, 0, 2],
+        //     [0, 1, 0],
+        //     [1, 0, 2]
+        // ];
+        let color = 2;
+
+        function show(pattern) {
+            let content;
+            let box = document.getElementById('box');
+            box.innerHTML = "";
+            for (let row = 0; row < 3; row++) {
+                for (let col = 0; col < 3; col++) {
+                    let cell = document.createElement('div');
+                    cell.innerHTML =
+                        pattern[row][col] == 2 ? "❌" :
+                        pattern[row][col] === 1 ? "⭕️" :
+                        "";
+                    cell.style.cursor =
+                        pattern[row][col] === 0 ? "pointer" : "default";
+                    cell.addEventListener('click', () => userMove(row, col));
+
+                    box.appendChild(cell);
+                }
+
+            }
+        }
+
+        show(pattern);
+        /**
+         * 自己
+         */
+        function userMove(x, y) {
+            pattern[x][y] = color;
+            if (check(pattern, color)) {
+                alert(color == 2 ? '❌ is winter!👏👏👏' : "⭕️ is winner!👏👏👏");
+            }
+            show(pattern);
+            color = 3 - color;
+            if (willWin(pattern, color)) {
+                console.log(color == 2 ? '❌ will win!😄😄😄' : '⭕️ will win!😄');
+            }
+            // 自己走棋后，电脑自动走棋
+            computerMove();
+        }
+
+        /**
+         * 电脑玩家
+         */
+        function computerMove() {
+            let choice = bestChoice(pattern, color);
+            if (choice.point) {
+                pattern[choice.point[1]][choice.point[0]] = color;
+            }
+            if (check(pattern, color)) {
+                alert((color === 2 ? '❌' : '⭕️') + 'is winter!👏👏👏');
+            }
+            color = 3 - color;
+            show(pattern);
+        }
+
+        /**
+         * 判断输赢,
+         * 思考： 怎么才算赢呢？ 三行三纵未占满的、斜方向未占满，说明未赢，反之，赢
+         */
+        function check(pattern, color) {
+            // 三行三纵 color不是 1 就是 2
+            // 横向
+            for (let i = 0; i < 3; i++) {
+                // 有任何一个子 不是这个颜色，就赢不了
+                let win = true;
+                for (let j = 0; j < 3; j++) {
+                    // 横向未占满
+                    if (pattern[i][j] !== color) {
+                        win = false;
+                        break;
+                    }
+                }
+                // 有三个子连成一条线，表示赢
+                if (win) return true;
+            } {
+                for (let i = 0; i < 3; i++) {
+                    // 纵向
+                    let win = true;
+                    for (let j = 0; j < 3; j++) {
+                        // 纵向未占满
+                        if (pattern[j][i] !== color) {
+                            win = false;
+                            break;
+                        }
+                    }
+                    if (win) return true;
+                }
+            } {
+                for (let i = 0; i < 3; i++) {
+                    let win = true;
+                    // 左斜边 三点连成一线
+                    for (let j = 0; j < 3; j++) {
+                        // 横纵坐标相等
+                        if (pattern[j][j] !== color) {
+                            win = false;
+                            break;
+                        }
+                    }
+                    if (win) return true;
+                }
+            } {
+                for (let i = 0; i < 3; i++) {
+                    let win = true;
+                    for (let j = 0; j < 3; j++) {
+                        // 斜方向 三点连成一线 [2-j]技巧
+                        if (pattern[j][2 - j] !== color) {
+                            win = false;
+                            break;
+                        }
+                    }
+                    if (win) return true;
+                }
+            }
+        }
+
+        function clone(pattern) {
+            return JSON.parse(JSON.stringify(pattern));
+        }
+
+        function willWin(pattern, color) {
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (pattern[i][j] !== 0)
+                        continue;
+                    let tmp = clone(pattern);
+                    tmp[i][j] = color;
+                    if (check(tmp, color)) {
+                        return [j, i];
+                    }
+                }
+            }
+            return null;
+        }
+
+        // 什么时候会输，我方没有 willWin 的点，且对方>2个 willWin
+        function willLose(pattern, color) {
+            if (willWin(pattern, color))
+                return false;
+        }
+
+        let openings = new Map();
+        openings.set([
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0]
+        ].toString(), {
+            point: [1, 1],
+            result: 0 // 平局
+        });
+
+        function bestChoice(pattern, color) {
+            if (openings.has(pattern.toString())) {
+                return openings.get(pattern.toString());
+            }
+            let point = willWin(pattern, color);
+            if (point) {
+                return {
+                    point: point,
+                    result: 1
+                }
+            }
+            let result = -1;
+            outer: for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (pattern[i][j] !== 0) {
+                        continue;
+                    }
+                    let tmp = clone(pattern);
+                    tmp[i][j] = color;
+                    let opp = bestChoice(tmp, 3 - color);
+                    if (-opp.result >= result) {
+                        point = [j, i];
+                        result = -opp.result;
+                    }
+                    if (result === 1) {
+                        break outer;
+                    }
+                }
+            }
+            return {
+                point: point,
+                result: point ? result : 0 // -1输 0 平 1 赢
+            }
+        }
+        let btn = document.getElementById('reset');
+        btn.addEventListener('click', function () {
+            pattern = [
+                [0, 0, 0],
+                [0, 0, 0],
+                [0, 0, 0]
+            ];
+            show(pattern);
+        });
+        /**
+         * 三行三纵
+         */
+
+
+        // 最好的办法是一维数组, 把9个展开去排列,优点有: %取余换行
+        // let pattern = [
+        //     2, 0, 0,
+        //     0, 1, 0,
+        //     0, 0, 0
+        // ];
+    </script>
+</body>
+
+</html>
