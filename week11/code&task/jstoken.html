@@ -1,0 +1,30 @@
+<!--
+ * @Author: lh
+ * @Date: 2020-06-20 21:41:13
+ * @LastEditors: lh
+ * @LastEditTime: 2020-06-20 21:48:03
+ * @Description: 
+ * @email: 3300536651@qq.com
+-->
+<script>
+    var source = `
+        function  sleep(t) {
+            return new Promise(function name(resolve) {
+                setTimeout(resolve, t);
+            });
+        }
+    `;
+    var regexp = /(function |new|return)|([])/;
+    var dictionary = ['keywords', 'whitespace', 'indentifier', 'punctuator'];
+    var token = null;
+    var lastIndex = 0;
+    do {
+        token = regexp.exec(source);
+        console.log(token[0]);
+        for (let i = 0; i < 4; i++) {
+            if (token[i])
+                console.log(dictionary[i]);
+        }
+    } while (token.length === lastIndex - regexp.lastIndex);
+    regexp.exec(source);
+</script>

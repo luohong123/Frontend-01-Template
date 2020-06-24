@@ -1,0 +1,111 @@
+<style>
+    #container {
+        width: 701px;
+        font-size: 0;
+        line-height: 7px;
+        display: flex;
+        flex-wrap: wrap;
+
+    }
+
+    .cell {
+        width: 6px;
+        height: 6px;
+        background-color: gray;
+        border-bottom: solid 1px white;
+        border-right: solid 1px white;
+    }
+</style>
+
+<div id="container"></div>
+<button type="button" onclick="localStorage.map=JSON.stringify(map)">保存</button>
+<button type="button" onclick="clearMap()">清空</button>
+<script type="text/javascript">
+    let map = localStorage.map ? JSON.parse(localStorage.map) : new Array(10000).fill(0);
+    let container = document.getElementById('container');
+    for (let y = 0; y < 100; y++) {
+        for (let x = 0; x < 100; x++) {
+            let cell = document.createElement('div');
+            cell.classList.add('cell');
+            if (map[y * 100 + x] === 1) {
+                cell.style.backgroundColor = 'black';
+            }
+            cell.addEventListener('mouseover', () => {
+                if (mousedown) {
+                    if (clear) {
+                        cell.style.backgroundColor = '';
+                        map[y * 100 + x] = 0;
+                    } else {
+                        cell.style.backgroundColor = 'black';
+                        map[y * 100 + x] = 1;
+                    }
+                }
+            })
+            container.appendChild(cell);
+        }
+    }
+    let mousedown = false;
+    let clear = false;
+    // 橡皮擦
+    document.addEventListener('mousedown', e => {
+        mousedown = true;
+        // 点击鼠标右键时
+        clear = (e.which === 3);
+    })
+    document.addEventListener('mouseup', () => mousedown = false);
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    function clearMap() {
+        localStorage.clear();
+        for (let y = 0; y < 100; y++) {
+            for (let x = 0; x < 100; x++) {
+                container.children[y * 100 + x].style.backgroundColor = '';
+                map[y * 100 + x] = 0;
+            }
+        }
+    }
+
+    function sleep(t) {
+        return new Promise(function (resolve) {
+            setTimeout(resolve, t);
+        });
+    }
+    async function findPath(map, start, end) {
+        let table = Object.create(map);
+        let queue = [start];
+        async function insert(x, y, pre) {
+            // 到达边界  不走回头路
+            if (x < 0 || y < 0 || x >= 100 || y >= 100) return;
+            if (table[y * 100 + x]) return;
+            await sleep(1);
+            container.children[y * 100 + x].style.backgroundColor = 'lightgreen';
+            table[100 * y + x] = pre;
+            queue.push([x, y]);
+        }
+        while (queue.length) {
+            let [x, y] = queue.shift();
+            console.log(x + ":" + y, 'xy');
+            if (x === end[0] && y === end[1]) {
+                let path = [];
+                while (x !== start[0] || y !== start[1]) {
+                    path.push(map[y * 100 + x]);
+                    [x, y] = table[y * 100 + x];
+                    container.children[y * 100 + x].style.backgroundColor = 'purple';
+                }
+                return path;
+            }
+            await insert(x - 1, y, [x, y]);
+            await insert(x, y - 1, [x, y]);
+            await insert(x + 1, y, [x, y]);
+            await insert(x, y + 1, [x, y]);
+
+            await insert(x - 1, y - 1, [x, y]);
+            await insert(x + 1, y - 1, [x, y]);
+            await insert(x - 1, y + 1, [x, y]);
+            await insert(x + 1, y + 1, [x, y]);
+
+        }
+        return null;
+    }
+    // findPath(map,[0,0],[50,50]);
+</script>
