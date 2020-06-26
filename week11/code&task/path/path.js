@@ -2,7 +2,7 @@
  * @Author: lh
  * @Date: 2020-06-18 21:31:04
  * @LastEditors: lh
- * @LastEditTime: 2020-06-20 20:20:09
+ * @LastEditTime: 2020-06-26 23:56:56
  * @Description: 
  * @email: 3300536651@qq.com
  */
@@ -84,7 +84,7 @@ async function findPath(map, start, end) {
         if (map[100 * y + x] !== 0)
             return;
         // 到达边界
-        if (x < 0 || y < 0 || x >= 0 || x >= 100 || y >= 100) return;
+        if (x < 0 || y < 0 || x >= 100 || y >= 100) return;
         // 不走回头路
         map[100 * y + x] = pre;
         // container.children[y * 100 + x].style.backgroundColor = 'lightgreen';
