@@ -2,7 +2,7 @@
  * @Author: lh
  * @Date: 2020-06-26 23:19:44
  * @LastEditors: lh
- * @LastEditTime: 2020-06-26 23:55:46
+ * @LastEditTime: 2020-06-27 19:42:10
  * @Description: 
  * @email: 3300536651@qq.com
 -->
@@ -86,6 +86,7 @@
             map = map.slice();
 
             function distance([x, y]) {
+                // ** 表示多少的次方 x-end[0]的2次方
                 return (x - end[0]) ** 2 + (y - end[1]) ** 2;
             }
             let collection = new BinaryHeap([start], (a, b) => distance(a) - distance(b));

@@ -2,14 +2,14 @@
  * @Author: lh
  * @Date: 2020-06-25 20:22:05
  * @LastEditors: lh
- * @LastEditTime: 2020-06-25 21:46:09
- * @Description: 
+ * @LastEditTime: 2020-07-01 13:45:24
+ * @Description: 正则风格的tokenize 解析一个四则运算的表达式 需要前面的产生式知识
  * @email: 3300536651@qq.com
 -->
 
 <script>
     var regexp = /([0-9\.]+)|([ ]+)|([\r\n]+)|(\+)|(\-)|(\*)|(\/)/g
-
+    // 数值 空白 终结者 加 减 乘 除 
     var dictionary = ['Number', 'Whitespace', 'LineTerminator', "+", "-", "*", "/"];
 
     function* tokenize(source) {
@@ -37,7 +37,9 @@
             type: "EOF"
         }
     }
-
+    /**
+     * AdditiveExpression 不一定加到最后才停止
+     */
     function Expression(source) {
         if (source[0].type === 'AdditiveExpression' && source[1].type === "EOF") {
             let node = {
@@ -124,6 +126,7 @@
     }
     let source = [];
     for (let token of tokenize("1024 * 2")) {
+        // 过滤空白
         if (token.type !== 'Whitespace' && token.type !== 'LineTerminator') {
             source.push(token)
         }
