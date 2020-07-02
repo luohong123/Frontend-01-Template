@@ -2,7 +2,7 @@
  * @Author: lh
  * @Date: 2020-06-27 21:27:06
  * @LastEditors: lh
- * @LastEditTime: 2020-06-27 21:58:07
+ * @LastEditTime: 2020-07-02 21:45:45
  * @Description: wildcard通配符匹配
  * @email: 3300536651@qq.com
 -->
@@ -42,8 +42,7 @@
             console.log(subPattern.replace(/\?/g, "[\\s\\S]"));
             let reg = new RegExp(subPattern.replace(/\?/g, "[\\s\\S]"), "g");
             reg.lastIndex = lastIndex;
-            reg.exec(source);
-            console.log(reg.exec(source));
+            if (!reg.exec(source)) return false;
             lastIndex = reg.lastIndex;
         }
         // 处理尾
