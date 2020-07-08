@@ -2,8 +2,8 @@
  * @Author: lh
  * @Date: 2020-07-02 20:24:27
  * @LastEditors: lh
- * @LastEditTime: 2020-07-04 19:47:32
- * @Description: 输入框的单向绑定 和双向绑定
+ * @LastEditTime: 2020-07-04 20:08:57
+ * @Description: range的双向数据绑定，不需要设置innerHTML innerText 进行刷新
  * @email: 3300536651@qq.com
 -->
 <input id="r" type="range" min="0" max="255">
@@ -11,6 +11,7 @@
 <input id="b" type="range" min="0" max="255">
 
 <div id="color" style="width: 200px; height: 200px;background: blue;"></div>
+<div id="text">Hello, {{text}}</div>
 <script>
     let handlers = new Map();
     let reactivities = new Map();
@@ -98,5 +99,16 @@
     })
     effect(() => {
         document.getElementById('color').style.backgroundColor = `rgb(${p.r},${p.g},${p.b})`;
+    })
+    let range = document.createRange();
+    range.setStart(document.getElementById('text').childNodes[0], 7);
+    range.setEnd(document.getElementById('text').childNodes[0], 15);
+    document.getElementById('text');
+    let data = reactive({
+        text: 'World'
+    });
+    effect(() => {
+        range.extractContents();
+        range.insertNode(document.createTextNode(data.text));
     })
 </script>

@@ -1,5 +1,4 @@
 # 每周总结可以写在这里
-
 ## 课堂笔记
 2020-0702
 #### Proxy
@@ -21,8 +20,17 @@ proxy比观察者模式更先进。
 大学的计算机英语比较旧，大学的数据结构和算法 这种基础知识可以学习。
 5. 如何看源码
 不推荐看源码，如果要看可以看业内知名的前端项目，底层的C++
+#### 组件化基础
+- attribute
+注重描述
+ - property 
+ 从属关系
+ - method
+
 ### 相关网站
 - [proxy](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
 - [vue-next reactive](https://github.com/vuejs/vue-next/blob/master/packages/reactivity/__tests__/reactive.spec.ts)
 - [锦江](https://dev.to/jinjiang/understanding-reactivity-in-vue-3-0-1jni)
-
+- [学习笔记](https://www.yuque.com/wendraw/fe/toyed-browser-html-parser)
+## 心得与体会
+时间过的真快啊，学习用时方恨少
