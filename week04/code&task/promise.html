@@ -1,0 +1,43 @@
+<!--
+ * @Author: qingcheng
+ * @Date: 2020-04-30 21:38:17
+ * @LastEditors: qingcheng
+ * @LastEditTime: 2020-04-30 21:50:16
+ * @Description: 
+ * @email: 3300536651@qq.com
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 例1
+        // new Promise(resolve=> resolve()).then(()=>console.log('1'));
+        // setTimeout(function() {
+        //     new Promise(resolve=>resolve()).then(console.log('2'));
+        // },0);
+        // console.log(3);
+        // function() {return this.a}
+        // 例2
+        // new Promise(resolve=> resolve()).then(()=>console.log('1'));
+        // setTimeout(function() {
+        //     console.log('2');
+        //     new Promise(resolve=>resolve()).then(console.log('3'));
+        // },0);
+        // console.log('4');
+
+        // 例3
+        new Promise(resolve => (console.log('0'),resolve())).then(()=>console.log('1'));
+        setTimeout(function() {
+            console.log('2');
+            new Promise(resolve=>resolve()).then(console.log('3'));
+        },0);
+        console.log('4');
+        console.log('5');
+    </script>
+</body>
+</html>

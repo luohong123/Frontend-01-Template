@@ -1,0 +1,53 @@
+<!--
+ * @Author: lh
+ * @Date: 2020-06-27 20:30:32
+ * @LastEditors: lh
+ * @LastEditTime: 2020-06-30 22:12:40
+ * @Description: 找到公共子串 O(M+N)时间复杂度
+ * @email: 3300536651@qq.com
+-->
+<script>
+    /**
+     * 不具有鲁棒性
+     */
+    //     function find(source, pattern) {
+    //         let j = 0;
+    //         for (let i = 0; i < source.length; i++) {
+    //             console.log(source[i], pattern[j]);
+    //             if (source[i] === pattern[j]) {
+    //                 j++;
+    //             } else {
+    //                 j = 0;
+    //             }
+    //             if (j === pattern.length) return true;
+    //         }
+    //         return false;
+    //     }
+    //     console.log(find('abcxyz', 'xy')); // true
+    //    console.log(find('abcxxyz', 'xy')); // false,实际上应该返回true
+    /**
+     *错误版
+     */
+    function find(source, pattern) {
+        let j = 0;
+        for (let i = 0; i < source.length; i++) {
+            console.log(source[i], pattern[j]);
+            if (source[i] === pattern[j]) {
+                j++;
+            } else {
+                j = 0;
+                if (source[i] === pattern[j]) {
+                    j++;
+                }
+            }
+            if (j === pattern.length) return true;
+        }
+        return false;
+    }
+    console.log(find('abcxyz', 'xy'), "=>true"); // true
+    console.log(find('abcxxyz', 'xy'), "=>true"); // true
+    console.log(find('abcxxyz', 'xxy'), "=>true"); // true
+    console.log(find('abcxxyz', 'cd'), "=>false"); // false
+    console.log(find('abcabcabx', 'abcabx'), "=>true"); // false 前面的abc已经消费掉了
+    console.log(find('abcc', 'cc'), "true"); // true
+</script>

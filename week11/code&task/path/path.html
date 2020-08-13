@@ -1,0 +1,48 @@
+<!--
+ * @Author: lh
+ * @Date: 2020-06-18 21:30:56
+ * @LastEditors: lh
+ * @LastEditTime: 2020-06-20 20:01:41
+ * @Description: 
+ * @email: 3300536651@qq.com
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- <meta charset="UTF-8"> -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>编辑器</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #container {
+            width: 701px;
+            font-size: 0;
+            line-height: 7px;
+            display: flex;
+            flex-wrap: wrap;
+
+        }
+
+        .cell {
+            width: 6px;
+            height: 6px;
+            background-color: gray;
+            border-bottom: solid 1px white;
+            border-right: solid 1px white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <button type="button" onclick="localStorage.map=JSON.stringify(map)">保存</button>
+    <button type="button" onclick="localStorage.clear()">清空</button>
+    <script src="./path.js"></script>
+</body>
+
+</html>

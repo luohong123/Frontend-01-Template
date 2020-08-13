@@ -1,0 +1,53 @@
+<!--
+ * @Author: lh
+ * @Date: 2020-06-11 20:14:01
+ * @LastEditors: lh
+ * @LastEditTime: 2020-06-11 20:27:02
+ * @Description: 
+ * @email: 3300536651@qq.com
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="a">
+        <span>1</span>
+        <p>2</p>
+        <a href="">3</a>
+        <div>4</div>
+    </div>
+    <script>
+        // let element = document.getElementById('a');
+        // function reverseChildren(element){
+        //     let l = element.childNodes.length;
+        //     while(l-- > 0) {
+        //         element.appendChild(element.childNodes[l]);
+        //     }
+        // }
+        // reverseChildren(element);
+
+        // 满分答案： 尽可能重排次数少
+        let element = document.getElementById('a');
+        function reverseChildren(element){
+            let range = new Range();
+            range.selectNodeContents(element);
+            let fragment = range.extractContents();
+            let l = fragment.childNodes.length;
+            while(l-- > 0){
+                fragment.appendChild(fragment.childNodes[l]);
+            }
+            element.appendChild(fragment);
+        }
+        // 一共触发两次重排
+        reverseChildren(element);
+    </script>
+</body>
+
+</html>

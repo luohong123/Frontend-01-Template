@@ -1,0 +1,49 @@
+<!--
+ * @Author: lh
+ * @Date: 2020-06-27 20:30:32
+ * @LastEditors: lh
+ * @LastEditTime: 2020-06-30 22:38:32
+ * @Description: 通过KMP算法 找到公共子串 O(M+N)时间复杂度 空间复杂度O(N)
+ * @email: 3300536651@qq.com
+-->
+<script>
+    /**
+     * 修复版 
+     */
+    function find(source, pattern) {
+        let table = new Array(pattern.length).fill(0);
+        let k = 0;
+        // 子串临时数组，子串匹配不上时，不用回到开头重新比较，利用了字符的相似性
+        for (let j = 1; j < pattern.length; j++) {
+            if (pattern[j] === pattern[k]) {
+                k++;
+            } else {
+                k = 0;
+            }
+            table[j] = k;
+        }
+        let j = 0;
+        for (let i = 0; i < source.length; i++) {
+            // console.log(source[i], pattern[j]);
+            if (source[i] === pattern[j]) {
+                j++;
+            } else {
+                j = table[j - 1];
+                if (source[i] === pattern[j]) {
+                    j++;
+                } else {
+                    j = 0;
+                }
+
+            }
+            if (j === pattern.length) return true;
+        }
+        return false;
+    }
+    console.log(find('abcxyz', 'xy'), "=>true"); // true
+    console.log(find('abcxxyz', 'xy'), "=>true"); // true
+    console.log(find('abcxxyz', 'xxy'), "=>true"); // true
+    console.log(find('abcxxyz', 'cd'), "=>false"); // false
+    console.log(find('abcabcabx', 'abcabx'), "=>true"); // false 前面的abc已经消费掉了
+    console.log(find('abcc', 'cc'), "true"); // true
+</script>

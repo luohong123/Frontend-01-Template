@@ -1,0 +1,60 @@
+<!--
+ * @Author: lh
+ * @Date: 2020-06-06 21:19:46
+ * @LastEditors: lh
+ * @LastEditTime: 2020-06-06 21:28:04
+ * @Description: 
+ * @email: 3300536651@qq.com
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="x">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+    </div>
+    <div id="b">
+    </div>
+    <script>
+        var domX = document.getElementById('x');
+        var domB = document.getElementById('b');
+        // while(domX.children.length) {
+        //     domB.appendChild(x.children[0]);
+        // }
+        // 以下代码会出错,
+        // dom节点为
+        // 2
+        // 4
+        // 6
+        // 1
+        // 3
+        // 5
+        // for (let i = 0; i < domX.children.length; i++) {
+        //     domB.appendChild(domX.children[i]);
+        // }
+
+        // 改为下面的代码
+        // 输出 1
+        //     2
+        //     3
+        //     4
+        //     5
+        //     6
+        while (domX.children.length) {
+            domB.appendChild(domX.children[0]);
+        }
+    </script>
+</body>
+
+</html>

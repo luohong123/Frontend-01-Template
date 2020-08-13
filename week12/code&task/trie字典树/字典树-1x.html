@@ -1,0 +1,62 @@
+<!--
+ * @Author: lh
+ * @Date: 2020-06-27 19:23:51
+ * @LastEditors: lh
+ * @LastEditTime: 2020-06-27 19:46:47
+ * @Description: 空间换时间，最精确的空间换时间的结构。字符串是算法里面简单 实用的算法
+ * @email: 3300536651@qq.com
+-->
+<script>
+    class Trie {
+        constructor() {
+            // map和object的区别：map里面可以用对象做key值
+            // this.root = new Map();
+            this.root = Object.create(null);
+        }
+        insert(word) {
+            let node = this.root;
+            for (let c of word) {
+                if (!node[c]) {
+                    node[c] = Object.create(null);
+                }
+                node = node[c]
+            }
+            // 字典树里面有重复的单词，需要计数
+            if (!("$" in node)) {
+                node["$"] = 0;
+            }
+            node['$']++;
+        }
+        /**
+         * 访问最多的次数
+         */
+        most() {
+            let max = 0;
+            let maxWord = null;
+            let visit = (node, word) => {
+                if (node.$ && node.$ > max) {
+                    max = node.$;
+                    maxWord = word;
+                }
+                for (let p in node) {
+                    visit(node[p], word + p);
+                }
+            }
+            visit(this.root, "");
+            console.log(maxWord);
+        }
+    }
+
+    function randomWord(length) {
+        var s = "";
+        for (let i = 0; i < length; i++) {
+            s += String.fromCharCode(Math.random() * 26 + "a".charCodeAt(0))
+        }
+        return s;
+    }
+    let trie = new Trie();
+    for (let i = 0; i < 100000; i++) {
+        trie.insert(randomWord(4));
+    }
+    console.log(trie);
+</script>

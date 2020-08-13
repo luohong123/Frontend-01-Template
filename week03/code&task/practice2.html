@@ -1,0 +1,207 @@
+<!--
+ * @Author: qingcheng
+ * @Date: 2020-04-25 19:13:26
+ * @LastEditors: qingcheng
+ * @LastEditTime: 2020-04-25 22:08:05
+ * @Description: 
+ * @email: 3300536651@qq.com
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第三周-第二节</title>
+</head>
+<body>
+    <script>
+        // a = 1 + 2;
+        // ;
+        // debugger;
+        // throw a;
+        // continue label1;
+        // break label2;
+        // return 1 + 2;
+
+
+    // {       
+    //     const a = 1;
+    //     throw '1 is throw';
+    //     let b = 2;
+    //     b = foo();
+    // }
+
+    
+    // for(let i = 0; i < 10; i++) {
+    //     let i = 0;
+    //     console.log(i);
+    // }
+
+
+    // {
+    //     let i = 0;
+    //     {
+    //         let i = 1;
+    //         console.log(i);
+    //     }
+    //     console.log(i);
+    // }
+
+    
+    // for(i = 0; i < 10; i++) {
+    //     console.log(i);
+    // }
+    // var i;
+
+    // function run() {
+    //     for(i = 0; i < 10; i++) {
+    //         console.log(i);
+    //     }
+    //     return;
+    //     var i;
+    // }
+    // run(); // 0 1 2 3 4 5 6 7 8 9
+
+    // for(var p in {a:1,b:2}) {
+    //     console.log(p); // a  b
+    // }
+
+    // for(let p of [1,2,3]) {
+    //     console.log(p); // 1 2 3
+    // }
+
+
+    // function *g() {
+    //     yield 0;
+    //     yield 1;
+    //     yield 4;
+    // }
+    //  for(let p of g()) {
+    //      console.log(p, '*g'); // 0 1 4
+    //  }
+
+    //  糟糕的代码
+    //  function Class() {
+    //     public:
+    //         this.a = 1;
+    //         this.b = 2;
+    //     private:
+    //         var x = 3;
+    //         var y = 4;
+    //  }
+
+    //  try {
+
+    //  } catch(error) {
+
+    //  } finally  {
+
+    //  }
+
+    // try {
+    //     throw 2;
+    // } catch(e) {
+    //     let e;
+    //     console.log(e);
+    // }
+
+    // var e = 3;
+    // try {
+    //     throw 2;
+    // } catch(e) {
+    //     console.log(e);
+    // }
+
+
+    // function* foo() {
+    //     yield 1;
+    //     yield 2;
+    //     var i = 3;
+    //     while(true) {
+    //         yield i++;
+    //     }
+    // }
+    // var o = function() {
+
+    // }
+    // var gen = foo();
+    // console.log(gen.next())
+    // console.log(gen.next())
+    // console.log(gen.next())
+    // console.log(gen.next())
+    // console.log(gen.next())
+    // console.log(gen.next())
+    
+    // var i = 0;
+    // function tick() {
+    //     console.log(i++);
+    //     var timer = setTimeout(tick, 1000)
+    //     if(i === 10) {
+    //         clearTimeout(timer);
+    //     }
+    // }
+    // tick()
+
+    // function sleep() {
+    //     return new Promise(resolve=> setTimeout(resolve));
+    // }
+    // void async function() {
+    //     var i = 0;
+    //     while(true) {
+    //         console.log(i++);
+    //         await sleep(3000);
+    //     }
+    // }();
+    // var x = 0;
+    // function foo() {
+    //     var o = {x:1};
+    //     x = 2;
+    //     with(o) {
+    //         var x = 3;
+    //     }
+    //     console.log(x);
+    // }
+    // foo();
+    // console.log(x); // 2 0
+
+        
+    // function foo() {
+    //     foo2();
+    //     console.log(i);
+    //     return;
+    //     var i = 1;
+    //     function foo2(){
+    //         console.log(2);
+    //     }
+    // }
+    // foo();
+
+    // var cls1 = 0;
+    // function foo() {
+    //     cls1 = 2;
+    //     class cls1 {
+
+    //     } 
+    // }
+    // foo()
+    // console.log(x);
+
+    // class Human {
+    //     hurt(damage) {
+    //         // 
+    //     }
+    // }
+// var o = [];
+// o[100] = 1;
+// console.log(o.length);
+// console.log(Object.getOwnPropertyDescriptor(o.length), 'o.length');
+// console.log(Object.getOwnPropertyDescriptor(o, 'length'));
+
+// UTF-8
+// '美'.codePointAt(0).toString(2); // 111111110001110
+// [0b11100111, 0b10111110, 0b10001110]
+// [231, 190, 142]
+// [0b11100111,....]
+    </script>
+</body>
+</html>
