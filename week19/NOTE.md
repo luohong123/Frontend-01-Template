@@ -12,3 +12,6 @@ https://ubuntu.com/download/desktop
 ## 课堂笔记
 
 ### 工具链 ｜ 目录结果与初始化
+- 建议开发版本的工具都安装最新版本,理论上`index.js`不断的升级
+
+01:15
