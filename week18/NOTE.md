@@ -1,13 +1,10 @@
-<!--
- * @Author: your name
- * @Date: 2020-04-13 09:43:51
- * @LastEditTime: 2020-08-06 22:02:47
- * @LastEditors: your name
- * @Description: In User Settings Edit
- * @FilePath: \Frontend-01-Template\week18\NOTE.md
--->
 # 每周总结可以写在这里
 
+
+# 每周总结可以写在这里
+## 课堂笔记
+### 参考链接：
+- https://github.com/fsevents/fsevents/
 dev工具
 
 - Server
