@@ -71,6 +71,28 @@ Express 应用程序生成器
 publisher和工具链做对接，对用户身份进行验证，接受提交的文件，存到对应的位置，版本控制，权限控制，用publish-tool(持续集成,纯粹的Node命令行工具)通过publish-server
 - 流式处理express(http-streaming-requset)
 - 公司的`nginx`一般是做反向代理，主服务还是要写代码
+- stream流式的概念？
+- req.pipe() 是什么？
+```js
+// pipe是管子里面的水
+req.pipe(writeStream);
+// 等效于
+req.on('data', trunk=>{
+    // 写
+    writeStream.write(thunk);
+});
+req.on('end',trunk=>{
+    // 读
+    writeStream.end(trunk);
+});
+```
+- promise如何封装可以循环访问的流？
+
+
+#### 发布系统
+发布系统可能会发多个文件，代码也需要压缩(archiver压缩：https://www.npmjs.com/package/archiver、compress压缩:https://www.npmjs.com/package/compress)
+
+打包一个目录并且上传到远程服务器
 #### 注意事项
 
 ## 心得与体会
