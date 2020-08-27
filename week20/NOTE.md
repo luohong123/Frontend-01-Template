@@ -1,7 +1,7 @@
 # 每周总结可以写在这里
 ##  本周作业
-- [x] 跟上课程进度，完成课上代码
-- [x] 用 promise 管理代码
+- 跟上课程进度，完成课上代码
+-  用 promise 管理代码
 
 ## 参考链接
 - PhantomJS 下载地址： https://phantomjs.org/download
@@ -42,6 +42,7 @@ Homepage URL: http://localhost:8000
 Webhook-Active 取消☑️
 Where can this GitHub App be installed? 选择 Any account
 点击 Create GitHub App
+publish-server-vanilla、publish-tool承担什么样的角色
 #### 小技巧
 - `open ./` 打开文件
 
